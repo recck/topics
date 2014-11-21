@@ -39,8 +39,13 @@ if (isset($_POST['submit'])) {
             $query = "INSERT INTO user_account (username, password, email) VALUES('$user', '$pass', '$email')";
             $res = pg_query($dbh, $query);
 
-            header('Location: thankyou.php?user=' . $user);
-            exit;
+            if ($res) {
+                header('Location: thankyou.php?user=' . $user);
+                exit;
+            } else {
+                $error = true;
+                $errorMsg = 'Something went wrong, check your information';
+            }
         }
     }
 }
@@ -58,6 +63,11 @@ if (isset($_POST['submit'])) {
                 <div class="page-header">
                     <h2>register</h2>
                 </div>
+                <?php if($error): ?>
+                <div class="alert alert-danger">
+                    <?php echo $errorMsg; ?>
+                </div>
+                <?php endif; ?>
                 <form method="post" class="form-horizontal">
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="un">
