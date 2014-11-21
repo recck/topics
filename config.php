@@ -1,5 +1,5 @@
 <?php
-$info = parse_ini_file("../config.ini", true);
+$info = parse_ini_file("config.ini", true);
 $db = $info['db_info'];
 
 $dsn = sprintf("host=%s port=%d dbname=%s user=%s password=%s",
