@@ -1,3 +1,30 @@
+<?php
+require_once __DIR__ . '/../config.php';
+
+$dbh = $connections['unsafe'];
+$error = false;
+$errorMsg = '';
+
+if (isset($_POST['submit'])) {
+    if (empty($_POST['un']) || empty($_POST['pw'])) {
+        $error = true;
+        $errorMsg = 'Provide both username and password';
+    } else {
+        $user = $_POST['un'];
+        $pass = $_POST['pw'];
+        $query = "SELECT * FROM user_account WHERE username = '$user' AND password = '$pass'";
+        $res = pg_query($dbh, $query);
+
+        if (pg_num_rows($res) > 0) {
+            $row = pg_fetch_assoc($res);
+            $errorMsg = 'Welcome to your email: ' . $row['email'];
+        } else {
+            $error = true;
+            $errorMsg = 'Invalid credentials';
+        }
+    }
+}
+?>
 <!doctype html>
 <html>
 <head>
@@ -11,6 +38,19 @@
                 <div class="page-header">
                     <h2>login</h2>
                 </div>
+                <?php
+                if ($error && !empty($errorMsg)):
+                ?>
+                <div class="alert alert-danger">
+                    <?php echo $errorMsg; ?>
+                </div>
+                <?php
+                elseif (!$error && !empty($errorMsg)):
+                ?>
+                <div class="alert alert-success">
+                    <?php echo $errorMsg; ?>
+                </div>
+                <?php endif; ?>
                 <form method="post" class="form-horizontal">
                     <div class="form-group">
                         <label class="col-sm-3 control-label" for="un">
