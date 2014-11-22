@@ -11,7 +11,7 @@ $0 ~ /<form/ {
     cur_field = 0
 
     match($0, /method=['"]([a-zA-Z]+)['"]/, method)
-    match($0, /action=['"](.*?)['"]/, action)
+    match($0, /action=['"]([^'"]+)['"]/, action)
 
     form_info[form_count, "method"] = length(method[1]) > 0 ? method[1] : "GET"
     form_info[form_count, "action"] = length(action[1]) > 0 ? action[1] : "DEFAULT"
