@@ -79,6 +79,31 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                 </form>
+                <form method="post" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="un">
+                            Username
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text" id="un" name="un" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="pw">
+                            Password
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="password" id="pw" name="pw" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <button type="submit" class="btn btn-primary" name="submit">
+                                Login
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
