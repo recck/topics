@@ -13,11 +13,15 @@ if (isset($_POST['submit'])) {
         $user = $_POST['un'];
         $pass = $_POST['pw'];
         $query = "SELECT * FROM user_account WHERE username = '$user' AND password = '$pass'";
+        echo $query;
         $res = pg_query($dbh, $query);
 
         if (pg_num_rows($res) > 0) {
             $row = pg_fetch_assoc($res);
             $errorMsg = 'Welcome to your email: ' . $row['email'];
+            $_SESSION['user'] = $row['username'];
+            header('Location: restricted.php');
+            exit;
         } else {
             $error = true;
             $errorMsg = 'Invalid credentials';
