@@ -1,4 +1,5 @@
 <?php
+session_start();
 $info = parse_ini_file("config.ini", true);
 $db = $info['db_info'];
 
